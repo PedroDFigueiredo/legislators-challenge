@@ -58,7 +58,4 @@ def legislators_support_oppose_count(
             )
         )
     
-    # Sort by id for consistent output
-    result.sort(key=lambda x: x.id)
-    
     return result
