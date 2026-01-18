@@ -30,17 +30,11 @@ def main():
     # persist the support count data
     repository.save_legislator_vote_counts(legislators_count)
 
-    print("\nLegislators Support/Oppose Count:")
-    print(legislators_count)
-
     # execute the support count operation for bills
     bills_count = bills_support_oppose_count(bills, votes, vote_results, legislators)
 
     # persist the bill vote count data
     repository.save_bill_vote_counts(bills_count)
-
-    print("\nBills Support/Oppose Count:")
-    print(bills_count)
 
     
 
