@@ -2,7 +2,7 @@ import csv
 from pathlib import Path
 from typing import List
 
-from models import Bill, Legislator, VoteResult, Vote, LegislatorVoteCount
+from models import Bill, Legislator, VoteResult, Vote, LegislatorVoteCount, BillVoteCount
 
 
 class LegislatorsRepository:
@@ -115,4 +115,38 @@ class LegislatorsRepository:
                     'name': vote_count.name,
                     'num_supported_bills': vote_count.num_supported_bills,
                     'num_opposed_bills': vote_count.num_opposed_bills
+                })
+    
+    def save_bill_vote_counts(
+        self, 
+        bill_vote_counts: List[BillVoteCount], 
+        output_file: str = "bills-support-oppose-count.csv"
+    ) -> None:
+        """
+        Save a list of BillVoteCount instances to a CSV file
+        
+        Args:
+            bill_vote_counts: List of BillVoteCount instances to save
+            output_file: Name of the output CSV file (default: bills-support-oppose-count.csv)
+                        The file will be saved in the datasets_path directory
+        """
+        output_path = self.datasets_path / output_file
+        
+        # Ensure the directory exists
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        
+        with open(output_path, 'w', encoding='utf-8', newline='') as f:
+            writer = csv.DictWriter(
+                f, 
+                fieldnames=['id', 'title', 'supporter_count', 'opposer_count', 'primary_sponsor']
+            )
+            writer.writeheader()
+            
+            for bill_vote_count in bill_vote_counts:
+                writer.writerow({
+                    'id': bill_vote_count.id,
+                    'title': bill_vote_count.title,
+                    'supporter_count': bill_vote_count.supporter_count,
+                    'opposer_count': bill_vote_count.opposer_count,
+                    'primary_sponsor': bill_vote_count.primary_sponsor
                 })

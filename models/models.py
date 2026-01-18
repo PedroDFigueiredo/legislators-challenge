@@ -39,3 +39,13 @@ class LegislatorVoteCount:
     name: str
     num_supported_bills: int
     num_opposed_bills: int
+
+
+@dataclass
+class BillVoteCount:
+    """Represents vote counts for a bill"""
+    id: int
+    title: str
+    supporter_count: int
+    opposer_count: int
+    primary_sponsor: str

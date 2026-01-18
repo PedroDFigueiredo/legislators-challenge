@@ -1,5 +1,5 @@
 from repositories import LegislatorsRepository
-from services import legislators_support_oppose_count
+from services import legislators_support_oppose_count, bills_support_oppose_count
 
 
 def main():
@@ -24,13 +24,23 @@ def main():
     print(f"Total Vote Results: {len(vote_results)}")
 
 
-    # execute the support count operation
+    # execute the support count operation for legislators
     legislators_count = legislators_support_oppose_count(legislators, vote_results)
 
     # persist the support count data
     repository.save_legislator_vote_counts(legislators_count)
 
+    print("\nLegislators Support/Oppose Count:")
     print(legislators_count)
+
+    # execute the support count operation for bills
+    bills_count = bills_support_oppose_count(bills, votes, vote_results, legislators)
+
+    # persist the bill vote count data
+    repository.save_bill_vote_counts(bills_count)
+
+    print("\nBills Support/Oppose Count:")
+    print(bills_count)
 
     
 

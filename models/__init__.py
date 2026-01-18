@@ -3,7 +3,8 @@ from .models import (
     Legislator,
     VoteResult,
     Vote,
-    LegislatorVoteCount
+    LegislatorVoteCount,
+    BillVoteCount
 )
 
 __all__ = [
@@ -11,5 +12,6 @@ __all__ = [
     'Legislator',
     'VoteResult',
     'Vote',
-    'LegislatorVoteCount'
+    'LegislatorVoteCount',
+    'BillVoteCount'
 ]
