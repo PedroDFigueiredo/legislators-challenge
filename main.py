@@ -23,9 +23,14 @@ def main():
     print(f"Total Votes: {len(votes)}")
     print(f"Total Vote Results: {len(vote_results)}")
 
-    first_result = legislators_support_oppose_count(legislators, vote_results)
 
-    print(first_result)
+    # execute the support count operation
+    legislators_count = legislators_support_oppose_count(legislators, vote_results)
+
+    # persist the support count data
+    repository.save_legislator_vote_counts(legislators_count)
+
+    print(legislators_count)
 
     
 
