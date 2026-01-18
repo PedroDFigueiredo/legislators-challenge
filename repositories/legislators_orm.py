@@ -89,14 +89,14 @@ class LegislatorsRepository:
     def save_legislator_vote_counts(
         self, 
         vote_counts: List[LegislatorVoteCount], 
-        output_file: str = "legislators-support-oppose-count.csv"
+        output_file: str = "bills.csv"
     ) -> None:
         """
         Save a list of LegislatorVoteCount instances to a CSV file
         
         Args:
             vote_counts: List of LegislatorVoteCount instances to save
-            output_file: Name of the output CSV file (default: legislators-support-oppose-count.csv)
+            output_file: Name of the output CSV file (default: bills.csv)
                         The file will be saved in the datasets_path directory
         """
         output_path = self.datasets_output_path / output_file
