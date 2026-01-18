@@ -31,13 +31,19 @@ legislators-challenge/
 │   ├── __init__.py
 │   ├── legislators_support_oppose_count.py
 │   └── bills_support_oppose_count.py
+├── tests/              # Test suite
+│   ├── __init__.py
+│   ├── test_services.py
+│   ├── test_repositories.py
+│   └── test_main.py
 └── main.py            # Entry point
 ```
 
 ## Requirements
 
 - Python 3.7+ (uses dataclasses and type hints)
-- No external dependencies (uses only Python standard library)
+- No external dependencies for running the application (uses only Python standard library)
+- pytest (optional, for running tests): `pip install pytest`
 
 ## Installation
 
@@ -113,6 +119,49 @@ Total Votes: 2
 Total Vote Results: 19
 ```
 
+## Testing
+
+The project includes comprehensive tests for all components. Tests are located in the `tests/` directory.
+
+### Running Tests
+
+1. Install pytest (if not already installed):
+```bash
+pip install pytest
+```
+
+2. Run all tests:
+```bash
+pytest tests/ -v
+```
+
+3. Run specific test files:
+```bash
+pytest tests/test_services.py -v
+pytest tests/test_repositories.py -v
+pytest tests/test_main.py -v
+```
+
+### Test Coverage
+
+The test suite includes:
+
+- **Service Tests** (`tests/test_services.py`):
+  - `legislators_support_oppose_count()`: Tests vote counting logic, edge cases, and unknown legislator handling
+  - `bills_support_oppose_count()`: Tests bill vote counting, sponsor identification, and edge cases
+
+- **Repository Tests** (`tests/test_repositories.py`):
+  - CSV reading operations: `get_all_bills()`, `get_all_legislators()`, `get_all_votes()`, `get_all_vote_results()`
+  - CSV writing operations: `save_legislator_vote_counts()`, `save_bill_vote_counts()`
+  - All tests use temporary directories to avoid modifying actual data files
+
+- **Main Function Tests** (`tests/test_main.py`):
+  - Verifies the complete execution flow
+  - Tests that all repository and service methods are called correctly
+  - Validates summary statistics display
+
+All tests use mocking and temporary files to ensure isolation and avoid dependencies on actual CSV data.
+
 ## Development
 
 The codebase uses:
@@ -120,3 +169,4 @@ The codebase uses:
 - Dataclasses for clean data modeling
 - CSV module from standard library for file I/O
 - Pathlib for path handling
+- pytest for testing
