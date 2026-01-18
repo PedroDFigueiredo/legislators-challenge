@@ -64,7 +64,7 @@ def bills_support_oppose_count(
         # Get primary sponsor name
         primary_sponsor = legislator_map.get(
             bill.sponsor_id, 
-            f"Unknown (ID: {bill.sponsor_id})"
+            f"Unknown"
         )
         
         result.append(
