@@ -20,7 +20,7 @@ legislators-challenge/
 │   │   └── votes.csv
 │   └── output/         # Generated output CSV files
 │       ├── bills.csv
-│       └── bills-support-oppose-count.csv
+│       └── bills.csv
 ├── models/             # Data models (dataclasses)
 │   ├── __init__.py
 │   └── models.py
@@ -73,7 +73,7 @@ python main.py
 
 3. The output CSV files will be generated in `datasets/output/`:
    - `bills.csv` - Contains legislator vote counts
-   - `bills-support-oppose-count.csv` - Contains bill vote counts
+   - `bills.csv` - Contains bill vote counts
 
 ## Architecture
 
